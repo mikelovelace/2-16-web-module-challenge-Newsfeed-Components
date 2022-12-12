@@ -165,9 +165,8 @@ function articleMaker(articleObj) {
   return articleMain;
 }
 
-// loop over data, select element, create component for each object, add each component as child of articles div
+// loop over data, select element, invoke articleMaker and append each article as a child of articles container
 data.forEach((article) => {
-  const articleContainer = document.querySelector("div.articles");
-  const articleList = articleMaker(article);
-  articleContainer.appendChild(articleList);
+  const articleContainer = document.querySelector(".articles");
+  articleContainer.appendChild(articleMaker(article));
 });
