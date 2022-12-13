@@ -1,12 +1,12 @@
 // This is the data we will be using, study it but don't change anything, yet.
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out",
 ];
 
 /* 
@@ -31,3 +31,41 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+
+function menuMaker(linksArray) {
+  // select elements
+  const menuWrapper = document.createElement("div");
+  const menuList = document.createElement("ul");
+
+  // append children and add class
+  menuWrapper.appendChild(menuList);
+  menuWrapper.classList.add("menu");
+
+  // loop through the links array ([menuItems]) while creating a list item and link at each iteration 
+  // while also appending them and adding the text content and styles
+  linksArray.forEach((linkText) => {
+    const listItem = document.createElement("li");
+    const link = document.createElement("a");
+    menuList.appendChild(listItem);
+    listItem.appendChild(link);
+    link.textContent = linkText;
+    link.href = "#";
+    link.style.textDecoration = "none";
+    link.style.color = "black";
+  });
+
+  // select element
+  // add click event which toggles the class "menu--open"
+  const menuButton = document.querySelector(".menu-button");
+  menuButton.addEventListener("click", () => {
+    menuWrapper.classList.toggle("menu--open");
+  });
+
+  // return parent
+  return menuWrapper;
+}
+
+// invoke the menuMaker while passing in the data and append it to the header
+const newMenu = menuMaker(menuItems);
+const header = document.querySelector(".header");
+header.appendChild(newMenu);
